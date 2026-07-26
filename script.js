@@ -187,18 +187,38 @@ function showTyping(){
 function removeTyping(){const typing = document.querySelector("#typing");
                         if(typing){typing.remove();}}
 
+const services = [
+    {
+        id: 1,
+        title: "AI Chatbots",
+        icon: "bot.svg",
+        description: "Smart AI assistants for your business."
+    },
+    {
+        id: 2,
+        title: "Web Development",
+        icon: "globe.svg",
+        description: "Modern websites with AI integration."
+    },
+    {
+        id: 3,
+        title: "Automation",
+        icon: "chart.svg",
+        description: "Automate repetitive business tasks."
+    }
+];
+
 const servicesContainer = document.getElementById("servicesContainer");
-fetch("http://localhost:5000/api/services")
-    .then((response) => response.json())
-    .then((data) => {servicesContainer.innerHTML = "";data.forEach((service) => {
-                                                    servicesContainer.innerHTML += `
-                                                    <div class="card">
-                                                    <img src="assets/icons/${service.icon}" class="card-icon" alt="${service.title}">
-                                                    <h3>${service.title}</h3>
-                                                    <p>${service.description}</p>
-                                                    </div>
-                                                    `;});})
-    .catch((error) => console.error(error));
+
+services.forEach((service) => {
+    servicesContainer.innerHTML += `
+        <div class="card">
+            <img src="assets/icons/${service.icon}" class="card-icon" alt="${service.title}">
+            <h3>${service.title}</h3>
+            <p>${service.description}</p>
+        </div>
+    `;
+});
 
 
 const chatWidget = document.querySelector("#chatWidget");
